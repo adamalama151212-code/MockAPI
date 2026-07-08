@@ -22,6 +22,7 @@ import os
 import random
 import sqlite3
 import threading
+from array import array
 
 from fastapi import FastAPI, Query
 
@@ -73,33 +74,37 @@ class FileLineSource:
 
 
 class RecordingsSource:
-    """Serves the frigate.db recordings table live. Cursor = last rowid (keyset
-    pagination: WHERE rowid > ?), which stays fast on 4M rows unlike OFFSET n."""
+    """Serves the frigate.db recordings table live by RANDOM sampling of rowid.
+
+    Sequential cursors (rowid or start_time) don't work here: the table stores all SD
+    segments first, and HD only exists in the last ~10 days / high rowids, so any small
+    sequential sample is SD-only. Random sampling makes every sample representative of the
+    whole table (HD/SD ratio, all cameras, full period) - like tailing a large live topic.
+    Effectively unbounded (never 'done'); the client bounds the pull. Real timestamps kept."""
 
     event_type = "RECORDINGS_METADATA"
 
-    def __init__(self, db_path, cam2qnap, start_rowid=0):
+    def __init__(self, db_path, cam2qnap, start=None):
         self._conn = sqlite3.connect(db_path, check_same_thread=False)
         self._conn.row_factory = sqlite3.Row
         self.cam2qnap = cam2qnap
-        self.last_rowid = start_rowid
-        self.max_rowid = self._conn.execute("SELECT MAX(rowid) FROM recordings").fetchone()[0] or 0
-        self.exhausted = self.last_rowid >= self.max_rowid
+        # rowids are non-contiguous (gaps), so we load them once (~32 MB as a 64-bit array)
+        # and sample uniformly OVER ROWS - a plain random rowid range would be gap-biased.
+        self._rowids = array("q", (r[0] for r in self._conn.execute("SELECT rowid FROM recordings")))
+        self._rng = random.Random()
+        self.served = int(start) if isinstance(start, (int, float)) else 0
+        self.exhausted = len(self._rowids) == 0
 
     def next(self):
         if self.exhausted:
             return None
+        rid = self._rng.choice(self._rowids)
         row = self._conn.execute(
             "SELECT rowid AS _rid, camera, path, start_time, duration, segment_size "
-            "FROM recordings WHERE rowid > ? ORDER BY rowid LIMIT 1",
-            (self.last_rowid,),
+            "FROM recordings WHERE rowid = ?",
+            (rid,),
         ).fetchone()
-        if row is None:
-            self.exhausted = True
-            return None
-        self.last_rowid = row["_rid"]
-        if self.last_rowid >= self.max_rowid:
-            self.exhausted = True
+        self.served += 1
         cam = row["camera"]
         ts = int(row["start_time"])
         return {
@@ -117,11 +122,11 @@ class RecordingsSource:
 
     @property
     def offset(self):
-        return self.last_rowid
+        return self.served
 
     def reset(self):
-        self.last_rowid = 0
-        self.exhausted = self.max_rowid <= 0
+        self.served = 0
+        self.exhausted = len(self._rowids) == 0
 
 
 # State: sources + persistent offsets
@@ -148,7 +153,7 @@ def _build_sources(offsets):
         "CAMERA_HEALTH": FileLineSource(
             "CAMERA_HEALTH", HEALTH_FILE, offsets.get("CAMERA_HEALTH", 0)),
         "RECORDINGS_METADATA": RecordingsSource(
-            FRIGATE_DB, CAM2QNAP, offsets.get("RECORDINGS_METADATA", 0)),
+            FRIGATE_DB, CAM2QNAP, offsets.get("RECORDINGS_METADATA")),
     }
 
 
