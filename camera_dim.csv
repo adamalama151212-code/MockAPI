@@ -1,0 +1,51 @@
+camera,camera_base,quality,resolution,device_id,location,zone
+10-Cam-10,10-Cam-10,HD,1920x1080,NAS6CC246,Warehouse,indoor
+10-Cam-10-SD,10-Cam-10,SD,640x480,NAS6CC246,Warehouse,indoor
+11-Cam-11,11-Cam-11,HD,1920x1080,RA-MCD-0004,Loading Dock,outdoor
+11-Cam-11-SD,11-Cam-11,SD,640x480,RA-MCD-0004,Loading Dock,outdoor
+12-Cam-12,12-Cam-12,HD,1920x1080,NAS6CC246,Front Gate,outdoor
+12-Cam-12-SD,12-Cam-12,SD,640x480,NAS6CC246,Front Gate,outdoor
+13-Cam-13,13-Cam-13,HD,1920x1080,RA-MCD-0004,Parking Lot,outdoor
+13-Cam-13-SD,13-Cam-13,SD,640x480,RA-MCD-0004,Parking Lot,outdoor
+14-Cam-14,14-Cam-14,HD,1920x1080,NAS6CC246,Reception,indoor
+14-Cam-14-SD,14-Cam-14,SD,640x480,NAS6CC246,Reception,indoor
+15-Cam-15,15-Cam-15,HD,1920x1080,RA-MCD-0004,Main Hallway,indoor
+15-Cam-15-SD,15-Cam-15,SD,640x480,RA-MCD-0004,Main Hallway,indoor
+16-Cam-16,16-Cam-16,HD,1920x1080,NAS6CC246,Server Room,indoor
+16-Cam-16-SD,16-Cam-16,SD,640x480,NAS6CC246,Server Room,indoor
+17-Cam-17,17-Cam-17,HD,1920x1080,RA-MCD-0004,Backyard,outdoor
+17-Cam-17-SD,17-Cam-17,SD,640x480,RA-MCD-0004,Backyard,outdoor
+18-Cam-18,18-Cam-18,HD,1920x1080,NAS6CC246,Perimeter Fence,outdoor
+18-Cam-18-SD,18-Cam-18,SD,640x480,NAS6CC246,Perimeter Fence,outdoor
+19-Cam-19,19-Cam-19,HD,1920x1080,RA-MCD-0004,Rooftop,outdoor
+19-Cam-19-SD,19-Cam-19,SD,640x480,RA-MCD-0004,Rooftop,outdoor
+20-Cam-20,20-Cam-20,HD,1920x1080,NAS6CC246,Storage Room,indoor
+20-Cam-20-SD,20-Cam-20,SD,640x480,NAS6CC246,Storage Room,indoor
+21-Cam-21,21-Cam-21,HD,1920x1080,RA-MCD-0004,Lobby,indoor
+21-Cam-21-SD,21-Cam-21,SD,640x480,RA-MCD-0004,Lobby,indoor
+22-Cam-22,22-Cam-22,HD,1920x1080,NAS6CC246,Garage,indoor
+22-Cam-22-SD,22-Cam-22,SD,640x480,NAS6CC246,Garage,indoor
+23-Cam-23,23-Cam-23,HD,1920x1080,RA-MCD-0004,Warehouse,indoor
+23-Cam-23-SD,23-Cam-23,SD,640x480,RA-MCD-0004,Warehouse,indoor
+24-Cam-24,24-Cam-24,HD,1920x1080,NAS6CC246,Loading Dock,outdoor
+24-Cam-24-SD,24-Cam-24,SD,640x480,NAS6CC246,Loading Dock,outdoor
+25-Cam-25,25-Cam-25,HD,1920x1080,RA-MCD-0004,Front Gate,outdoor
+25-Cam-25-SD,25-Cam-25,SD,640x480,RA-MCD-0004,Front Gate,outdoor
+26-Cam-26,26-Cam-26,HD,1920x1080,NAS6CC246,Parking Lot,outdoor
+26-Cam-26-SD,26-Cam-26,SD,640x480,NAS6CC246,Parking Lot,outdoor
+27-Cam-27,27-Cam-27,HD,1920x1080,RA-MCD-0004,Reception,indoor
+27-Cam-27-SD,27-Cam-27,SD,640x480,RA-MCD-0004,Reception,indoor
+3-Cam-3,3-Cam-3,HD,1920x1080,NAS6CC246,Main Hallway,indoor
+3-Cam-3-SD,3-Cam-3,SD,640x480,NAS6CC246,Main Hallway,indoor
+4-Cam-4,4-Cam-4,HD,1920x1080,RA-MCD-0004,Server Room,indoor
+4-Cam-4-SD,4-Cam-4,SD,640x480,RA-MCD-0004,Server Room,indoor
+5-Cam-5,5-Cam-5,HD,1920x1080,NAS6CC246,Backyard,outdoor
+5-Cam-5-SD,5-Cam-5,SD,640x480,NAS6CC246,Backyard,outdoor
+6-Cam-6,6-Cam-6,HD,1920x1080,RA-MCD-0004,Perimeter Fence,outdoor
+6-Cam-6-SD,6-Cam-6,SD,640x480,RA-MCD-0004,Perimeter Fence,outdoor
+7-Cam-7,7-Cam-7,HD,1920x1080,NAS6CC246,Rooftop,outdoor
+7-Cam-7-SD,7-Cam-7,SD,640x480,NAS6CC246,Rooftop,outdoor
+8-Cam-8,8-Cam-8,HD,1920x1080,RA-MCD-0004,Storage Room,indoor
+8-Cam-8-SD,8-Cam-8,SD,640x480,RA-MCD-0004,Storage Room,indoor
+9-Cam-9,9-Cam-9,HD,1920x1080,NAS6CC246,Lobby,indoor
+9-Cam-9-SD,9-Cam-9,SD,640x480,NAS6CC246,Lobby,indoor

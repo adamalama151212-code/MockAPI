@@ -1,0 +1,17 @@
+# They are transferred to EC2 via S3, not through the repo.
+*.jsonl
+*.db
+offsets.json
+
+# Keep the tiny camera->device map in git (it is small and defines the mapping)
+!camera_device_map.json
+
+# Local qnap source folders
+qnap.4/
+qnap16/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
